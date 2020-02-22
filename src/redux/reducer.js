@@ -1,7 +1,8 @@
 import { GET_CRYPTO } from "./constants"
 
 const initialState = {
-  crypto: ["hello"],
+  crypto: [],
+  remoteCrypto: []
 }
 
 function rootReducer(state = initialState, action) {
@@ -10,6 +11,11 @@ function rootReducer(state = initialState, action) {
       return Object.assign({}, state, {
           crypto: state.crypto.concat(action.payload)
         })
+    case "CRYPTO_LOADED": {
+      return Object.assign({}, state, {
+        remoteCrypto: state.remoteCrypto.concat(action.payload)
+      })
+    }
     default:
       return state
     }
