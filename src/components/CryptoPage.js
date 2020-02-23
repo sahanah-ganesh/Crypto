@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
-import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { Text, SafeAreaView, StyleSheet, ScrollView, Image, View, TouchableOpacity } from 'react-native'
 // import { getDataFromAPI } from '../redux/actions'
 import CryptoCard from './CryptoCard'
 
@@ -75,7 +75,15 @@ class CryptoPage extends Component {
     return (
       <SafeAreaView styles={styles.container}>
         <ScrollView style={styles.scroll}>
-          <Text style={styles.text}>Crypto</Text>
+          <Text style={styles.appTitle}>Crypto</Text>
+          <View style={styles.refresh}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => console.log("test")}>
+              <Image
+                style={styles.image}
+                source={require('../assets/reload.png')}
+              />
+            </TouchableOpacity>
+          </View>
           {this.showCard()}
         </ScrollView>
       </SafeAreaView>
@@ -86,7 +94,6 @@ class CryptoPage extends Component {
     return this.state.data.map((coin) => {
       return (
         <CryptoCard
-          key={coin.id}
           name={coin.name}
           symbol={coin.symbol}
           price={Number.parseFloat(coin.quote.AUD.price).toFixed(2)}
@@ -104,16 +111,23 @@ const styles = StyleSheet.create({
   },
   scroll: {
     marginHorizontal: 20,
-    backgroundColor: 'lightgrey',
-    height: '100%'
+    backgroundColor: 'whitesmoke',
+    height: '100%',
   },
-  text: {
+  appTitle: {
     textAlign: 'center',
     fontSize: 42,
-    color: 'white',
+    color: 'mediumseagreen',
     fontFamily: 'AmericanTypewriter-Bold',
     letterSpacing: 5,
-    paddingBottom: 50,
+    paddingBottom: 20,
+  },
+  refresh: {
+    alignItems: 'center',
+    paddingBottom: 20,
+  },
+  image: {
+    paddingBottom: 20,
   },
 });
 

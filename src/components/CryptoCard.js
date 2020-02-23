@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 
-const CryptoCard = ({key, name, symbol, price, change, color}) => {
+const CryptoCard = ({name, symbol, price, change, color}) => {
   return (
     <View style={styles.cardBox}>
       <View style={styles.symbolTitleBox}>
