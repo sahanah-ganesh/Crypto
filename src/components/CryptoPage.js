@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
-import { Text, FlatList, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
+import { Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native'
 // import { getDataFromAPI } from '../redux/actions'
+import CryptoCard from './CryptoCard'
 
 class CryptoPage extends Component {
   constructor(props) {
@@ -89,25 +90,38 @@ class CryptoPage extends Component {
     return (
       <SafeAreaView styles={styles.container}>
         <ScrollView style={styles.scroll}>
-          <Text style={styles.text}>Hi</Text>
+          <Text style={styles.text}>Crypto</Text>
+          {this.showCard()}
         </ScrollView>
       </SafeAreaView>
     );
+  }
+
+  showCard() {
+    return this.state.data.map((coin) => {
+      return (
+        <CryptoCard name={coin.name} />
+      )
+    })
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
   },
   scroll: {
     marginHorizontal: 20,
+    backgroundColor: 'lightgreen',
   },
   text: {
+    textAlign: 'center',
     fontSize: 42,
-    color: "black",
-  }
-})
+    color: 'white',
+    fontFamily: 'AmericanTypewriter-Bold',
+    letterSpacing: 5,
+  },
+});
 
 // function mapStateToProps(state) {
 //   return {
