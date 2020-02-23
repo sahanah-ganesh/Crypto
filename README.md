@@ -32,7 +32,9 @@ Make .env file with CRYPTO_KEY=insert your key here
 $ npm start
 ```
 
-#### Open second terminal and open app in iOS simulator
+### Open second terminal and open app in iOS simulator
 ```
 $ react-native run-ios
 ```
+
+!["Crypto Demo Img"](https://github.com/sahanah-ganesh/Crypto/blob/master/src/assets/screen.png)
