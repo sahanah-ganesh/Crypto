@@ -13,13 +13,10 @@ class CryptoPage extends Component {
           id: 1,
           name: 'Bitcoin',
           symbol: 'BTC',
-          circulating_supply: 18230537,
-          total_supply: 18230537,
           quote: {
             AUD: {
               price: 14568.89264157718,
-              volume_24h: 60893778823.04279,
-              market_cap: 265598736351.30054,
+              percent_change_7d: -4.80199241,
             },
           },
         },
@@ -27,13 +24,10 @@ class CryptoPage extends Component {
           id: 1027,
           name: 'Ethereum',
           symbol: 'ETH',
-          circulating_supply: 109799694.374,
-          total_supply: 109799694.374,
           quote: {
             AUD: {
               price: 396.36305143484486,
-              volume_24h: 30437072498.435917,
-              market_cap: 43520541908.69201,
+              percent_change_7d: -5.48225543,
             },
           },
         },
@@ -41,13 +35,10 @@ class CryptoPage extends Component {
           id: 52,
           name: 'XRP',
           symbol: 'XRP',
-          circulating_supply: 43749413421,
-          total_supply: 99991077044,
           quote: {
             AUD: {
               price: 0.4117184246698974,
-              volume_24h: 3821292249.7768674,
-              market_cap: 18012439573.926186,
+              percent_change_7d: -17.57837712,
             },
           },
         },
@@ -55,13 +46,10 @@ class CryptoPage extends Component {
           id: 1831,
           name: 'Bitcoin Cash',
           symbol: 'BCH',
-          circulating_supply: 18291750,
-          total_supply: 18291750,
           quote: {
             AUD: {
               price: 566.7108034948294,
-              volume_24h: 6528902008.986556,
-              market_cap: 10366132339.826546,
+              percent_change_7d: -22.0051512,
             },
           },
         },
@@ -69,18 +57,15 @@ class CryptoPage extends Component {
           id: 3602,
           name: 'Bitcoin SV',
           symbol: 'BSV',
-          circulating_supply: 18288889.5819233,
-          total_supply: 18288889.5819233,
           quote: {
             AUD: {
               price: 432.1476538626304,
-              volume_24h: 3314671269.7481284,
-              market_cap: 7903500724.580858,
+              percent_change_7d: 18.71525503,
             },
           },
         },
       ],
-    }
+    };
   }
   componentDidMount() {
     // this.props.getDataFromAPI()
@@ -100,8 +85,15 @@ class CryptoPage extends Component {
   showCard() {
     return this.state.data.map((coin) => {
       return (
-        <CryptoCard name={coin.name} />
-      )
+        <CryptoCard
+          key={coin.id}
+          name={coin.name}
+          symbol={coin.symbol}
+          price={Number.parseFloat(coin.quote.AUD.price).toFixed(2)}
+          change={Number.parseFloat(coin.quote.AUD.percent_change_7d).toFixed(2)}
+          color={coin.quote.AUD.percent_change_7d < 0 ? "red" : "green"}
+        />
+      );
     })
   }
 }
@@ -112,7 +104,8 @@ const styles = StyleSheet.create({
   },
   scroll: {
     marginHorizontal: 20,
-    backgroundColor: 'lightgreen',
+    backgroundColor: 'lightgrey',
+    height: '100%'
   },
   text: {
     textAlign: 'center',
@@ -120,6 +113,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontFamily: 'AmericanTypewriter-Bold',
     letterSpacing: 5,
+    paddingBottom: 50,
   },
 });
 
