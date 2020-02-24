@@ -1,83 +1,24 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 import { Text, SafeAreaView, StyleSheet, ScrollView, Image, View, TouchableOpacity } from 'react-native'
-// import { getDataFromAPI } from '../redux/actions'
+import { getDataFromAPI } from '../redux/actions'
 import CryptoCard from './CryptoCard'
 
 class CryptoPage extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      data: [
-        {
-          id: 1,
-          name: 'Bitcoin',
-          symbol: 'BTC',
-          quote: {
-            AUD: {
-              price: 14568.89264157718,
-              percent_change_7d: -4.80199241,
-            },
-          },
-        },
-        {
-          id: 1027,
-          name: 'Ethereum',
-          symbol: 'ETH',
-          quote: {
-            AUD: {
-              price: 396.36305143484486,
-              percent_change_7d: -5.48225543,
-            },
-          },
-        },
-        {
-          id: 52,
-          name: 'XRP',
-          symbol: 'XRP',
-          quote: {
-            AUD: {
-              price: 0.4117184246698974,
-              percent_change_7d: -17.57837712,
-            },
-          },
-        },
-        {
-          id: 1831,
-          name: 'Bitcoin Cash',
-          symbol: 'BCH',
-          quote: {
-            AUD: {
-              price: 566.7108034948294,
-              percent_change_7d: -22.0051512,
-            },
-          },
-        },
-        {
-          id: 3602,
-          name: 'Bitcoin SV',
-          symbol: 'BSV',
-          quote: {
-            AUD: {
-              price: 432.1476538626304,
-              percent_change_7d: 18.71525503,
-            },
-          },
-        },
-      ],
-    };
-  }
-  componentDidMount() {
-    // this.props.getDataFromAPI()
   }
 
+  componentDidMount() {
+    console.log("state", this.props.crypto)
+  }
   render() {
     return (
       <SafeAreaView styles={styles.container}>
         <ScrollView style={styles.scroll}>
           <Text style={styles.appTitle}>Crypto</Text>
           <View style={styles.refresh}>
-            <TouchableOpacity activeOpacity={0.5} onPress={() => console.log("test")}>
+            <TouchableOpacity activeOpacity={0.5} onPress={() => this.refreshCrypto()}>
               <Image
                 style={styles.image}
                 source={require('../assets/reload.png')}
@@ -91,7 +32,9 @@ class CryptoPage extends Component {
   }
 
   showCard() {
-    return this.state.data.map((coin) => {
+    let data
+    this.props.remoteCrypto.length > 1 ? data = this.props.crypto : data = this.props.remoteCrypto
+    return data.map((coin) => {
       return (
         <CryptoCard
           name={coin.name}
@@ -102,6 +45,10 @@ class CryptoPage extends Component {
         />
       );
     })
+  }
+
+  refreshCrypto() {
+    this.props.getDataFromAPI()
   }
 }
 
@@ -131,12 +78,11 @@ const styles = StyleSheet.create({
   },
 });
 
-// function mapStateToProps(state) {
-//   return {
-//     crypto: state.crypto
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    crypto: state.crypto,
+    remoteCrypto: state.remoteCrypto
+  }
+}
 
-// export default connect(mapStateToProps, { getDataFromAPI })(CryptoPage)
-
-export default CryptoPage
+export default connect(mapStateToProps, { getDataFromAPI })(CryptoPage)
