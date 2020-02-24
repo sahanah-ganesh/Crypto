@@ -7,6 +7,9 @@ import CryptoCard from './CryptoCard'
 class CryptoPage extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      count: 0
+    }
   }
 
   componentDidMount() {
@@ -32,9 +35,10 @@ class CryptoPage extends Component {
   }
 
   showCard() {
-    let data
-    this.props.remoteCrypto.length > 1 ? data = this.props.crypto : data = this.props.remoteCrypto
-    return data.map((coin) => {
+    // let data
+    // this.props.remoteCrypto.length > 1 ? data = this.props.crypto : data = this.props.remoteCrypto
+    // return data.map((coin) => {
+    return this.props.crypto.map((coin) => {
       return (
         <CryptoCard
           name={coin.name}
@@ -48,7 +52,11 @@ class CryptoPage extends Component {
   }
 
   refreshCrypto() {
-    this.props.getDataFromAPI()
+    if (this.state.count === 0) {
+      this.props.getDataFromAPI()
+      .then(this.setState({ count: 1 }))
+    }
+      return null
   }
 }
 
