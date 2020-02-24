@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Text, SafeAreaView, StyleSheet, ScrollView, Image, View, TouchableOpacity } from 'react-native'
 import { getDataFromAPI } from '../redux/actions'
 import CryptoCard from './CryptoCard'
+import CryptoSearch from './CryptoSearch'
 
 class CryptoPage extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class CryptoPage extends Component {
       <SafeAreaView styles={styles.container}>
         <ScrollView style={styles.scroll}>
           <Text style={styles.appTitle}>Crypto</Text>
+          <CryptoSearch />
           <View style={styles.refresh}>
             <TouchableOpacity activeOpacity={0.5} onPress={() => this.refreshCrypto()}>
               <Image
