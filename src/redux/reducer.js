@@ -8,8 +8,8 @@ const initialState = {
       symbol: 'BTC',
       quote: {
         AUD: {
-          price: 14568.89264157718,
-          percent_change_7d: -4.80199241,
+          price: 14492.507143536526,
+          percent_change_24h: -1.88176517,
         },
       },
     },
@@ -19,8 +19,8 @@ const initialState = {
       symbol: 'ETH',
       quote: {
         AUD: {
-          price: 396.36305143484486,
-          percent_change_7d: -5.48225543,
+          price: 392.5743182983321,
+          percent_change_24h: -3.10142705,
         },
       },
     },
@@ -30,8 +30,8 @@ const initialState = {
       symbol: 'XRP',
       quote: {
         AUD: {
-          price: 0.4117184246698974,
-          percent_change_7d: -17.57837712,
+          price: 0.4030756312336932,
+          percent_change_24h: -2.9084828,
         },
       },
     },
@@ -41,8 +41,8 @@ const initialState = {
       symbol: 'BCH',
       quote: {
         AUD: {
-          price: 566.7108034948294,
-          percent_change_7d: -22.0051512,
+          price: 558.0466670570355,
+          percent_change_24h: -5.10256499,
         },
       },
     },
@@ -52,11 +52,66 @@ const initialState = {
       symbol: 'BSV',
       quote: {
         AUD: {
-          price: 432.1476538626304,
-          percent_change_7d: 18.71525503,
+          price: 408.2905764581468,
+          percent_change_24h: -6.09283117,
         },
       },
     },
+    {
+      "id": 2,
+      "name": "Litecoin",
+      "symbol": "LTC",
+      "quote": {
+        "AUD": {
+          "price": 112.01563553455634,
+          "percent_change_24h": -2.83513086,
+        }
+      }
+    },
+    {
+      "id": 825,
+      "name": "Tether",
+      "symbol": "USDT",
+      "quote": {
+        "AUD": {
+          "price": 1.5161949096077483,
+          "percent_change_24h": 0.12176123,
+        }
+      }
+    },
+    {
+      "id": 1765,
+      "name": "EOS",
+      "symbol": "EOS",
+      "quote": {
+        "AUD": {
+          "price": 6.173572749058351,
+          "percent_change_24h": -2.81896569,
+        }
+      }
+    },
+    {
+      "id": 1839,
+      "name": "Binance Coin",
+      "symbol": "BNB",
+      "quote": {
+        "AUD": {
+          "price": 32.136412534585475,
+          "percent_change_24h": 5.85771779,
+        }
+      }
+    },
+    {
+      "id": 2011,
+      "name": "Tezos",
+      "symbol": "XTZ",
+      "quote": {
+        "AUD": {
+          "price": 4.5178408433852475,
+          "percent_change_24h": -8.86956786,
+        }
+      }
+    }
   ],
   remoteCrypto: [],
 };

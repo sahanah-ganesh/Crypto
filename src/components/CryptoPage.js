@@ -46,8 +46,8 @@ class CryptoPage extends Component {
           name={coin.name}
           symbol={coin.symbol}
           price={Number.parseFloat(coin.quote.AUD.price).toFixed(2)}
-          change={Number.parseFloat(coin.quote.AUD.percent_change_7d).toFixed(2)}
-          color={coin.quote.AUD.percent_change_7d < 0 ? "red" : "green"}
+          change={Number.parseFloat(coin.quote.AUD.percent_change_24h).toFixed(2)}
+          color={coin.quote.AUD.percent_change_24h < 0 ? "red" : "green"}
         />
       );
     })
