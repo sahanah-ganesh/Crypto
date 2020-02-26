@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Text, SafeAreaView, StyleSheet, ScrollView, Image, View, TouchableOpacity } from 'react-native'
 import { getDataFromAPI } from '../redux/actions'
 import CryptoCard from './CryptoCard'
-import CryptoSearch from './CryptoSearch'
+import CryptoAdd from './CryptoAdd'
 
 class CryptoPage extends Component {
   constructor(props) {
@@ -14,14 +14,15 @@ class CryptoPage extends Component {
   }
 
   componentDidMount() {
-    console.log("state", this.props.crypto)
+    console.log("state", this.props.remoteCrypto)
   }
+
   render() {
     return (
       <SafeAreaView styles={styles.container}>
         <ScrollView style={styles.scroll}>
           <Text style={styles.appTitle}>Crypto</Text>
-          <CryptoSearch />
+          <CryptoAdd />
           <View style={styles.refresh}>
             <TouchableOpacity activeOpacity={0.5} onPress={() => this.refreshCrypto()}>
               <Image
@@ -40,9 +41,10 @@ class CryptoPage extends Component {
     // let data
     // this.props.remoteCrypto.length > 1 ? data = this.props.crypto : data = this.props.remoteCrypto
     // return data.map((coin) => {
-    return this.props.crypto.map((coin) => {
+    return this.props.hardcoded.map((coin) => {
       return (
         <CryptoCard
+          key={coin.id}
           name={coin.name}
           symbol={coin.symbol}
           price={Number.parseFloat(coin.quote.AUD.price).toFixed(2)}
@@ -90,6 +92,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
+    hardcoded: state.hardcoded,
     crypto: state.crypto,
     remoteCrypto: state.remoteCrypto
   }
